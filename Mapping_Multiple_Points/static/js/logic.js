@@ -1,8 +1,10 @@
 // Add console.log to check to see if our code is working.
 console.log("working");
 
+let cityData = cities;
+
 //Creat the map object with Option
-let map = L.map('mapid').setView([34.05, -118.000], 12);
+let map = L.map('mapid').setView([34.05, -118.000], 4);
 
 // We create the tile layer that will be the background of our map.
 let streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -16,9 +18,13 @@ streets.addTo(map);
 
 //Create marker to Los Angeles, CA
 
-L.circle([34.0522, -118.2437], {
-	radius: 1000,
-	color: "black",
-	fillcolor: "#ffffa1",
-}).addTo(map);
-
+// Loop through the cities array and create one marker for each city.
+cityData.forEach(function(city) {
+ console.log(city)
+ L.circleMarker(city.location, {
+	 color: 'orange',
+	 lineweight: 4,
+	 radius: city.population/200000
+ })
+ .bindPopup("<h2>" + city.city + "," + city.state + "</h2> <hr> <h3>Population " + city.population.toLocaleString() + "</h3>").addTo(map)
+});
