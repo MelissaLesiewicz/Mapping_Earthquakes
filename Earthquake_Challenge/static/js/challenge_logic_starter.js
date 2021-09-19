@@ -153,8 +153,3 @@ d3.json("https://github.com/fraxen/tectonicplates/blob/master/GeoJSON/PB2002_bou
 	
 tectonicPlates.addTo(map)
 });
-
-d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(function(data) {
-L.geoJson(data, {
-	
-})});
